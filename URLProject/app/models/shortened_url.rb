@@ -10,6 +10,16 @@ class ShortenedUrl < ActiveRecord::Base
     :primary_key => :id
   )
   
+  has_many(
+    :visits,
+    :class_name => 'Visit',
+    :foreign_key => :shortened_url,
+    :primary_key => :id
+  )
+  
+  has_many :visitors, :through => :visits, :source => :user
+  
+  
   def self.random_code
     
     new_url = SecureRandom.urlsafe_base64
