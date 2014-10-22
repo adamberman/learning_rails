@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022221357) do
+ActiveRecord::Schema.define(version: 20141022213023) do
 
   create_table "shortened_urls", force: true do |t|
-    t.string  "long_url",     null: false
-    t.string  "short_url",    null: false
-    t.integer "submitter_id", null: false
+    t.string   "long_url",     null: false
+    t.string   "short_url",    null: false
+    t.integer  "submitter_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "shortened_urls", ["short_url", "long_url"], name: "index_shortened_urls_on_short_url_and_long_url", unique: true
@@ -31,8 +33,13 @@ ActiveRecord::Schema.define(version: 20141022221357) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "visits", force: true do |t|
-    t.integer "shortened_url"
-    t.integer "user"
+    t.integer  "user_id"
+    t.integer  "shortened_url_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "visits", ["shortened_url_id"], name: "index_visits_on_shortened_url_id"
+  add_index "visits", ["user_id"], name: "index_visits_on_user_id"
 
 end

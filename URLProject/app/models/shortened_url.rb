@@ -21,7 +21,6 @@ class ShortenedUrl < ActiveRecord::Base
   
   
   def self.random_code
-    
     new_url = SecureRandom.urlsafe_base64
     while ShortenedUrl.exists?(new_url)
       new_url = SecureRandom.urlsafe_base64
@@ -35,7 +34,19 @@ class ShortenedUrl < ActiveRecord::Base
     :short_url => self.random_code,
     :submitter_id => user.id
     )
+  end
   
+  def num_clicks
+    visits.count
+  end
+  
+  def num_uniques
+    visitors.distinct.count
+  end
+  
+  def num_recent_uniques
+    visitors.where(created_at: 10.minutes.ago..Time.now).distinct.count
+    # .where('created_at >= ?', something)
   end
   
 end
