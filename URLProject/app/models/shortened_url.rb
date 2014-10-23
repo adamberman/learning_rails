@@ -13,11 +13,11 @@ class ShortenedUrl < ActiveRecord::Base
   has_many(
     :visits,
     :class_name => 'Visit',
-    :foreign_key => :shortened_url,
+    :foreign_key => :shortened_url_id,
     :primary_key => :id
   )
   
-  has_many :visitors, :through => :visits, :source => :user
+  has_many :visitors, -> { distinct }, :through => :visits, :source => :user
   
   
   def self.random_code
@@ -41,7 +41,7 @@ class ShortenedUrl < ActiveRecord::Base
   end
   
   def num_uniques
-    visitors.distinct.count
+    visitors.count
   end
   
   def num_recent_uniques
