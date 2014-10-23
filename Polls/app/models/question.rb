@@ -10,6 +10,8 @@
 #
 
 class Question < ActiveRecord::Base
+  validates :text, :poll_id, presence: true
+  
   belongs_to(
     :poll,
     :class_name => "Poll",

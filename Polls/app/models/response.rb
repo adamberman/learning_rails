@@ -10,6 +10,8 @@
 #
 
 class Response < ActiveRecord::Base
+  validates :user_id, :answer_choice_id, presence: true
+  
   belongs_to(
     :respondent,
     :class_name => "User",
