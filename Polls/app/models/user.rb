@@ -30,9 +30,7 @@ class User < ActiveRecord::Base
     polls = self
       .responses
       .select('polls.title, Count(questions.id) AS num_questions')
-      .joins(:answer_choices)
       .joins(:questions)
-      .joins(:polls)
       .group('polls.id')
     
           #
