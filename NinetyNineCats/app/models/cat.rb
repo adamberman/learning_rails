@@ -3,7 +3,7 @@ class Cat < ActiveRecord::Base
   validates :color, inclusion: { in: %w[black brown calico orange],
             message: "Cats don't come in that color" }
   validates :name, :birth_date, :color, :sex, presence: true
-  validates :color, inclusion: { in: %w[M F], message: "Sex must be M or F" }
+  validates :sex, inclusion: { in: %w[M F], message: "Sex must be M or F" }
   
   def age
     ((Date::today - birth_date) / 365).to_i
