@@ -25,4 +25,11 @@ ActiveRecord::Base.transaction do
         name: Faker::Name.name, sex: "M")
   Cat.create!(birth_date: Date.new(2013,12,17), color: "orange", 
         name: Faker::Name.name, sex: "F")
+        
+  CatRentalRequest.create!(start_date: Date.new(2014,10,27),
+        end_date: Date.new(2014,12,27), status: 'PENDING', cat_id_id: 1)
+  CatRentalRequest.create!(start_date: Date.new(2014,10,27),
+        end_date: Date.new(2014,12,27), status: 'PENDING', cat_id_id: 7)
+  CatRentalRequest.create!(start_date: Date.new(2014,10,27),
+        end_date: Date.new(2014,12,27), status: 'PENDING', cat_id_id: 3)
 end

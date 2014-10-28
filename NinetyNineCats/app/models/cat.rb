@@ -7,6 +7,8 @@ class Cat < ActiveRecord::Base
   validates :sex, inclusion: { in: %w[M F], message: "Sex must be M or F" }
   validate :birth_date_not_in_future
   
+  has_many :cat_rental_requests
+  
   def age
     ((Date::today - birth_date) / 365).to_i
   end
