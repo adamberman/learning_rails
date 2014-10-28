@@ -1,6 +1,6 @@
 class Contact < ActiveRecord::Base
-  validates :name, :email, :user_id, presence: true
-  validates :user_id, presence: true, uniqueness: { scope: :email }
+  validates :name, :email, :user, presence: true
+  validates :user, presence: true, uniqueness: { scope: :email }
   
   belongs_to(
     :owner,
@@ -18,7 +18,7 @@ class Contact < ActiveRecord::Base
   )
   
   has_many(
-    :users,
+    :shared_users,
     through: :contact_shares,
     source: :user
   )
