@@ -7,7 +7,7 @@ class Cat < ActiveRecord::Base
   validates :sex, inclusion: { in: %w[M F], message: "Sex must be M or F" }
   validate :birth_date_not_in_future
   
-  has_many :cat_rental_requests
+  has_many :cat_rental_requests, dependent: :destroy
   
   def age
     ((Date::today - birth_date) / 365).to_i
@@ -17,7 +17,7 @@ class Cat < ActiveRecord::Base
   
   def birth_date_not_in_future
     unless birth_date && birth_date < Date::today
-      errors[:days] << "Birthday cannot be in the future"
+      errors[:birth_day] << "Birthday cannot be in the future"
     end
   end
 end
