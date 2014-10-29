@@ -1,7 +1,8 @@
-class CatRentalRequest < ApplicationController
+class CatRentalRequestsController < ApplicationController
   
   def new
     @request = CatRentalRequest.new
+    @cats = Cat.all
     render :new
   end
   
@@ -13,6 +14,13 @@ class CatRentalRequest < ApplicationController
       render :new
     end
   end
+  
+  def index
+    @cat = Cat.find(params[:cat_id])
+    @requests = @cat.cat_rental_requests
+    render :index
+  end
+    
   
   
   

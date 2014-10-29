@@ -5,7 +5,7 @@ class CatRentalRequest < ActiveRecord::Base
   validates :status, inclusion: { in: STATUSES,
      message: "Status must be PENDING, APPROVED, OR DENIED" }
   validate :cat_rental_dates_do_not_overlap
-  after_initialize self.status ||= "PENDING"
+  after_initialize :initialize_pending
   
   belongs_to :cat
   
@@ -31,5 +31,9 @@ class CatRentalRequest < ActiveRecord::Base
     end
   end
   
+  def initialize_pending
+    status ||= "PENDING"
+  end
+    
   
 end
