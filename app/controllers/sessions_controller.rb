@@ -14,14 +14,12 @@ class SessionsController < ApplicationController
 			@user = User.new(params.require(:user).permit(:email))
 			render :new
 		else
-			session[:session_token] = User.reset_session_token!
-			redirect_to user_url(@user)
+			log_in_user!(@user)
 		end
 	end
 
 	def destroy
-		@user = find_by(session_token: session[:session_token])
-		@user.session_token = User.reset_session_token!
+		current_user.reset_session_token!
 		session[:session_token] = nil
 		redirect_to new_session_url
 	end 
