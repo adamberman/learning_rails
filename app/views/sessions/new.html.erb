@@ -1,6 +1,6 @@
 <h1>Log In!</h1>
 <form 
-	action="users_url" 
+	action="/session" 
 	method="POST">
 	<input
 		type="hidden"
@@ -9,16 +9,16 @@
 
 	<label for="email">Email: </label>
 	<input 
-		name="user[:email]"
+		name="user[email]"
 		id="email"
 		type="text" 
 		value="<%= @user.email %>">
 
 	<label for="password">Password: </label>
 	<input 
-		name="user[:password]
+		name="user[password]
 		id="password"
 		type="password">
-		
+
 	<input type="submit" value="Log In">
 </form>
