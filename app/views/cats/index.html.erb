@@ -1,0 +1,12 @@
+<h1>All Your Feline Clients!</h1>
+
+<%= link_to "Create New Feline Client", new_cat_url %>
+<ul>
+  <% @cats.each do |cat| %>
+  
+  <li><a href="<%= cat_url(cat) %>"><%= cat.name %></a></li>
+ 
+  <% end %>
+</ul>
+
+<!-- <%= link_to "Create new cat!", new_cat_url %> -->

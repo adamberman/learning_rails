@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CatOutfit</title>
+  <!-- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> -->
+<%= csrf_meta_tags %>
+</head>
+<body>
+<% if current_user.nil? || current_user.id.nil? %>
+  <%= link_to "Log In!", new_session_url %>
+  <%= link_to "Sign Up!", new_user_url %>
+<% else %>
+    <%= "Hello,  #{current_user.user_name}!"%> <%= button_to "Log out?", session_url, method: :delete %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>
