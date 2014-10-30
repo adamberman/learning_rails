@@ -10,7 +10,7 @@
 
 <% if logged_in? %>
 	<form 
-		action="/session" 
+		action="<%= session_url %>" 
 		method="POST">
 		<input
 			type="hidden"
