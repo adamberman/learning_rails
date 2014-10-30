@@ -10,4 +10,8 @@ ActiveRecord::Base.transaction do
 	5.times do 
 		User.create!(email: Faker::Internet.email, password: Faker::Internet.password)
 	end
+
+	5.times do
+		Band.create!(name: Faker::Lorem.word)
+	end
 end
