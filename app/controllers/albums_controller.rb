@@ -3,7 +3,7 @@ class AlbumsController < ApplicationController
 	def new
 		@album = Album.new
 		@bands = Band.all
-		@band = Band.find(params[:band_id])
+		@owner_band = Band.find(params[:band_id])
 		render :new
 	end
 
@@ -11,9 +11,19 @@ class AlbumsController < ApplicationController
 	end
 
 	def create
+		@bands = Band.all
+		@album = Album.new(album_params)
+		@owner_band = Band.find(params[:album][:band_id])
+		if @album.save
+			redirect_to albums_url(@album)
+		else
+			render :new
+		end
 	end
 
 	def index
+		@albums = Album.all
+		render :index
 	end
 
 	def destroy
@@ -22,5 +32,6 @@ class AlbumsController < ApplicationController
 	private
 
 	def album_params
+		params.require(:album).permit(:name, :band_id, :style)
 	end
 end

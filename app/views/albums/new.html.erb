@@ -13,24 +13,39 @@
 
 	<label for="name">Name: </label>
 	<input 
-		name="band[name]"
+		name="album[name]"
 		id="name"
 		type="text" 
 		value="<%= @album.name %>">
 
-	<label for="band">Band: </label>
+	<label for="album_band_id">Band: </label>
 	<select
-		name="album[band]"
-		id="band"
+		name="album[band_id]"
+		id="album_band_id"
 		<option></option>
 		<% @bands.each do |band| %>
 			<option
-				<%= @band == band ? "selected" : "" %>
-				value="<%= band %>">
+				<%= band.id == @owner_band.id ? "selected" : "" %>
+				value="<%= band.id %>">
 				<%= band.name %>
 			</option>
 		<% end %>
 	</select>
+
+	<input 
+		type="radio"
+		name="album[style]"
+		value="Live"
+		id="album_live"
+		<%= @album.style == "Live" ? "checked" : "" %>>
+	<label for="album_live">Live</label>
+	<input 
+		type="radio"
+		name="album[style]"
+		value="Studio"
+		id="album_studio"
+		<%= @album.style == "Studio" ? "checked" : "" %>>
+	<label for="album_studio">Studio</label>
 
 
 	<input type="submit" value="Submit!">
