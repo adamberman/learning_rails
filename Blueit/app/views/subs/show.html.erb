@@ -1,0 +1,7 @@
+<h1><%= @sub.title %></h1>
+<% if current_user == @mod %>
+  <%= link_to "edit sub", edit_sub_url(@sub) %>
+<% end %>
+<h4>Moderator: <%= @mod.username %></h4>
+
+<p><%= @sub.description %></p>

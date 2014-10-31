@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  
+  before_action :present_user_cannot_access_page, only: [:new, :create]
+  
   def new
     @user = User.new
     render :new

@@ -11,4 +11,14 @@ class ApplicationController < ActionController::Base
   def current_user
     nil || User.find_by(session_token: session[:session_token])
   end
+  
+  def logged_in?
+    !!current_user
+  end
+  
+  def present_user_cannot_access_page
+    if logged_in?
+      redirect_to user_url(current_user)
+    end
+  end
 end

@@ -9,7 +9,16 @@ class User < ActiveRecord::Base
     :posts,
     class_name: "Post",
     foreign_key: :author_id,
-    primary_key: :id
+    primary_key: :id,
+    dependent: :destroy
+  )
+  
+  has_many(
+    :moderated_subs, 
+    class_name: "Subs",
+    foreign_key: :moderator_id,
+    primary_key: :id,
+    dependent: :destroy
   )
   
   def password=(password)
