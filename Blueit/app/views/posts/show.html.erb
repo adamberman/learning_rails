@@ -1,0 +1,32 @@
+<h1><%= @post.title %></h1>
+<h4><%= link_to @author.username, user_url(@author) %></h4>
+<h5><%= link_to @sub.title, sub_url(@sub) %></h5>
+<br>
+<% if @post.url %>
+  <p>Link: <%= @post.url %></p>
+<% end %>
+<br>
+<% if @post.content %>
+  <p><%= @post.content %></p>
+<% end %>
+
+<% if current_user == @author %>
+  <%= link_to 'edit post', edit_post_url(@post) %>
+  
+  <form 
+    action="<%= post_url(@post) %>"
+    method="POST">
+    
+    <input
+      type="hidden"
+      name="_method"
+      value="DELETE">
+      
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+      
+    <input type="submit" value="delete">
+  </form>
+<% end %>

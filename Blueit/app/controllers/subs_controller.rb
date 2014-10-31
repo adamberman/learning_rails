@@ -2,6 +2,11 @@ class SubsController < ApplicationController
   
   before_action :sub_editor_is_moderator, only: [:edit, :update, :destroy]
   
+  def index
+    @subs = Sub.all
+    render :index
+  end
+  
   def new
     @sub = Sub.new
     render :new
@@ -20,6 +25,7 @@ class SubsController < ApplicationController
   def show
     @sub = Sub.find(params[:id])
     @mod = @sub.moderator
+    @posts = @sub.posts
     render :show
   end
   
@@ -39,7 +45,7 @@ class SubsController < ApplicationController
   def destroy
     @sub.destroy
   end
-  
+
   
   protected
   

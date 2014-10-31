@@ -2,6 +2,14 @@
 <% if current_user == @mod %>
   <%= link_to "edit sub", edit_sub_url(@sub) %>
 <% end %>
-<h4>Moderator: <%= @mod.username %></h4>
+<h4>Moderator: <%= link_to @mod.username, user_url(@mod) %></h4>
 
 <p><%= @sub.description %></p>
+
+<ul>
+<% @posts.each do |post| %>
+  <li><%= link_to post.title, post_url(post) %></li>
+<% end %>
+</ul>
+
+<%= link_to "new post", new_sub_post_url(@sub) %>
