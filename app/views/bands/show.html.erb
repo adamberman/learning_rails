@@ -3,7 +3,7 @@
 <h2>Albums</h2>
 <ul>
 <% @albums.each do |album| %>
-	<li><%= link_to album.name, albums_url(album) %></li>
+	<li><%= link_to album.name, album_url(album) %></li>
 <% end %>
 </ul>
 

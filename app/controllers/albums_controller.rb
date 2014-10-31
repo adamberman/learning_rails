@@ -8,6 +8,8 @@ class AlbumsController < ApplicationController
 	end
 
 	def show
+		@album = Album.find(params[:id])
+		render :show
 	end
 
 	def create
@@ -27,6 +29,8 @@ class AlbumsController < ApplicationController
 	end
 
 	def destroy
+		album = Album.find(params[:id])
+		album.destroy
 	end
 
 	private
