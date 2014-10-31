@@ -1,0 +1,55 @@
+<h1>New Track!</h1>
+<form 
+	action="<%= tracks_url %>" 
+	method="POST">
+	<input
+		type="hidden"
+		name="_method"
+		value="POST">
+	<input
+		type="hidden"
+		name="authenticity_token"
+		value="<%= form_authenticity_token %>">
+
+	<label for="name">Name: </label>
+	<input 
+		name="track[name]"
+		id="name"
+		type="text" 
+		value="<%= @track.name %>">
+
+	<label for="track_album_id">Band: </label>
+	<select
+		name="track[album_id]"
+		id="track_album_id"
+		<option></option>
+		<% @albums.each do |album| %>
+			<option
+				<%= album.id == @owner_album.id ? "selected" : "" %>
+				value="<%= album.id %>">
+				<%= album.name %>
+			</option>
+		<% end %>
+	</select>
+
+	<input 
+		type="radio"
+		name="track[status]"
+		value="Regular"
+		id="status_regular"
+		<%= @track.status == "Regular" ? "checked" : "" %>>
+	<label for="status_regular">Regular</label>
+	<input 
+		type="radio"
+		name="track[status]"
+		value="Bonus"
+		id="status_bonus"
+		<%= @track.status == "Bonus" ? "checked" : "" %>>
+	<label for="status_bonus">Bonus</label>
+
+	<label for="lyrics">Lyrics: </label>
+	<textarea name="track[lyrics]" id="lyrics"><%= @track.lyrics %></textarea>
+
+
+	<input type="submit" value="Submit!">
+</form>
