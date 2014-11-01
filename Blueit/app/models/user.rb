@@ -20,6 +20,13 @@ class User < ActiveRecord::Base
     primary_key: :id,
     dependent: :destroy
   )
+
+  has_many(
+    :comments,
+    class_name: "Comment",
+    foreign_key: :author_id,
+    primary_key: :id
+    )
   
   def password=(password)
     @password = password
