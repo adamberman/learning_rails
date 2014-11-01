@@ -34,6 +34,15 @@
   <textarea name="post[content]" id="content"></textarea>   
   <br>
   
+  <% @subs.each do |sub| %>
+    <input
+      type="checkbox"
+      name="post[sub_ids][]"
+      id="post_sub_<%= sub.title %>"
+      value="<%= sub.id %>">
+      <label for="post_sub_<%= sub.title %>"><%= sub.title %></label>
+  <% end%>
+  
   <input type="submit"
          value="<%= button_name %>">  
   

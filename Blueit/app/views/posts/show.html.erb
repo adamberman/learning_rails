@@ -1,6 +1,10 @@
 <h1><%= @post.title %></h1>
-<h4><%= link_to @author.username, user_url(@author) %></h4>
-<h5><%= link_to @sub.title, sub_url(@sub) %></h5>
+<h4>Poster: <%= link_to @author.username, user_url(@author) %></h4>
+
+<p>Subs: <% @subs.each do |sub| %>
+  <%= link_to sub.title, sub_url(sub) %> 
+  <% end %>
+</p>
 <br>
 <% if @post.url %>
   <p>Link: <%= @post.url %></p>

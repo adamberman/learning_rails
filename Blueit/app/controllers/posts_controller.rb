@@ -5,15 +5,17 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
+    @subs = Sub.all
     render :new
   end
   
   def create
-    more_params = { sub_id: params[:sub_id], author_id: current_user.id }
+    more_params = { author_id: current_user.id }
     @post = Post.new(post_params.merge(more_params))
     if @post.save
       redirect_to post_url(@post)
     else
+      @subs = Sub.all
       flash.now[:errors] = @post.errors.full_messages
       render :new
     end
@@ -22,11 +24,12 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @author = @post.author
-    @sub = @post.sub
+    @subs = @post.subs
     render :show
   end
   
   def edit
+    @subs = Sub.all
     render :edit
   end
   
@@ -40,15 +43,14 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @sub = @post.sub
     @post.destroy
-    redirect_to sub_url(@sub)
+    redirect_to subs_url
   end
   
   protected
   
   def post_params
-    params.require(:post).permit(:title, :url, :content)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end
   
   def non_owner_cannot_edit_update_or_destroy_post

@@ -2,7 +2,9 @@ class Sub < ActiveRecord::Base
   validates :title, :moderator, presence: true
   validates :title, uniqueness: true
   
-  has_many :posts, dependent: :destroy
+  has_many :posts, through: :post_subs, source: :post
+  has_many :post_subs, dependent: :destroy
+  
   
   belongs_to(
     :moderator, 

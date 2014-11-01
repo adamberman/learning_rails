@@ -4,8 +4,10 @@
 <% end %>
 <h4>Moderator: <%= link_to @mod.username, user_url(@mod) %></h4>
 
+<h4>Sub-Blueit Description: </h4>
 <p><%= @sub.description %></p>
 
+<h4>Posts:</h4>
 <ul>
 <% @posts.each do |post| %>
   <li><%= link_to post.title, post_url(post) %></li>
