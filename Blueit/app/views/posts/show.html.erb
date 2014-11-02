@@ -34,3 +34,14 @@
     <input type="submit" value="delete">
   </form>
 <% end %>
+
+<% if @comments %>
+  <ul>
+  <% @comments.each do |comment| %>
+    <li><%= comment.author %>: <%= comment.content %></li>
+    <br>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= link_to "New comment", new_post_comment_url(@post) %>

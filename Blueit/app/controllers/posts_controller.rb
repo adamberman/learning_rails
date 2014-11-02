@@ -25,6 +25,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @author = @post.author
     @subs = @post.subs
+    @comments = @post.comments
     render :show
   end
   
