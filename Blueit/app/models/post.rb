@@ -5,18 +5,18 @@ class Post < ActiveRecord::Base
   has_many :subs, through: :post_subs, source: :sub
   has_many :comments
 
-  has_many(
-  	:top_level_comments
-  	-> { where(parent_comment_id: IS NULL) },
-  	class_name: "Comment",
-  	foreign_key: :post_id,
-  	primary_key: :id
-  )
+  # has_many(
+  # 	:top_level_comments
+  # 	-> { where(parent_comment_id: IS NULL) },
+  # 	class_name: "Comment",
+  # 	foreign_key: :post_id,
+  # 	primary_key: :id
+  # )
   
-  belongs_to(
-    :author,
-    class_name: "User",
-    foreign_key: :author_id,
-    primary_key: :id
-  )
+  # belongs_to(
+  #   :author,
+  #   class_name: "User",
+  #   foreign_key: :author_id,
+  #   primary_key: :id
+  # )
 end
