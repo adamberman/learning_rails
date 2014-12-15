@@ -1,11 +1,14 @@
-<h1>New Band!</h1>
+<% action_url = @band.persisted? ? band_url(@band) : bands_url(@band) %>
+<% hidden_value = @band.persisted ? :patch : :post %>
+
+
 <form 
-	action="<%= bands_url %>" 
+	action="<%= action_url %>" 
 	method="POST">
 	<input
 		type="hidden"
 		name="_method"
-		value="POST">
+		value="<%= hidden_value %>">
 	<input
 		type="hidden"
 		name="authenticity_token"

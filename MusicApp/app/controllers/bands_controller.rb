@@ -30,6 +30,12 @@ class BandsController < ApplicationController
 		redirect_to bands_url
 	end
 
+	def edit
+		@band = Band.find(params[:id])
+		@albums = @band.albums
+		render :edit
+	end
+
 	private
 
 	def band_params

@@ -33,6 +33,11 @@ class TracksController < ApplicationController
 		track.destroy
 	end
 
+	def edit
+		@track = Track.find(params[:id])
+		render :edit
+	end
+
 	private
 
 	def track_params

@@ -34,6 +34,12 @@ class AlbumsController < ApplicationController
 		album.destroy
 	end
 
+	def edit
+		@album = Album.find(params[:id])
+		@tracks = @album.tracks
+		render :edit
+	end
+
 	private
 
 	def album_params
